@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AskMeFr</title>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 10c-22.1 0-40 17.9-40 40 0 8.8 2.8 16.9 7.6 23.5l-2.1 8.4c-0.3 1.2 0.6 2.3 1.8 2.3h4.2c1.2 0 2.3-0.9 2.6-2.1l1.4-5.6C30.2 80.8 39.6 85 50 85s19.8-4.2 24.5-8.5l1.4 5.6c0.3 1.2 1.4 2.1 2.6 2.1h4.2c1.2 0 2.1-1.1 1.8-2.3l-2.1-8.4C86.2 66.9 90 58.8 90 50c0-22.1-17.9-40-40-40z' fill='%231a1a1a'/%3E%3Ccircle cx='38' cy='42' r='3' fill='%23fff'/%3E%3Ccircle cx='62' cy='42' r='3' fill='%23fff'/%3E%3Cpath d='M35 55c0-8.3 6.7-15 15-15s15 6.7 15 15' stroke='%23fff' stroke-width='2' fill='none'/%3E%3Cpath d='M25 30c2-4 6-8 12-10M75 30c-2-4-6-8-12-10M30 25c3-2 7-3 11-3M70 25c-3-2-7-3-11-3' stroke='%231a1a1a' stroke-width='1.5' fill='none' opacity='0.6'/%3E%3C/svg%3E">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1a1a1a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="AskMeFr">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 10c-22.1 0-40 17.9-40 40 0 8.8 2.8 16.9 7.6 23.5l-2.1 8.4c-0.3 1.2 0.6 2.3 1.8 2.3h4.2c1.2 0 2.3-0.9 2.6-2.1l1.4-5.6C30.2 80.8 39.6 85 50 85s19.8-4.2 24.5-8.5l1.4 5.6c0.3 1.2 1.4 2.1 2.6 2.1h4.2c1.2 0 2.1-1.1 1.8-2.3l-2.1-8.4C86.2 66.9 90 58.8 90 50c0-22.1-17.9-40-40-40z' fill='%231a1a1a'/%3E%3Ccircle cx='38' cy='42' r='3' fill='%23fff'/%3E%3Ccircle cx='62' cy='42' r='3' fill='%23fff'/%3E%3Cpath d='M35 55c0-8.3 6.7-15 15-15s15 6.7 15 15' stroke='%23fff' stroke-width='2' fill='none'/%3E%3Cpath d='M25 30c2-4 6-8 12-10M75 30c-2-4-6-8-12-10M30 25c3-2 7-3 11-3M70 25c-3-2-7-3-11-3' stroke='%231a1a1a' stroke-width='1.5' fill='none' opacity='0.6'/%3E%3C/svg%3E">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="app">
+        <header class="header">
+            <div class="logo">AskMeFr</div>
+            <div class="spotlight-nav">
+                <button class="spotlight-trigger" id="spotlightTrigger">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.35-4.35" />
+                    </svg>
+                    <span class="current-mode" id="currentModeText">Choose Mode</span>
+                    <kbd class="shortcut">Ctrl+/</kbd>
+                </button>
+            </div>
+        </header>
+
+        <!-- Spotlight Search Modal -->
+        <div class="spotlight-modal" id="spotlightModal">
+            <div class="spotlight-backdrop" id="spotlightBackdrop"></div>
+            <div class="spotlight-container">
+                <div class="spotlight-search">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.35-4.35" />
+                    </svg>
+                    <input type="text" placeholder="Search modes..." id="spotlightInput" autocomplete="off">
+                    <button class="spotlight-close" id="spotlightClose">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18" />
+                            <line x1="6" y1="6" x2="18" y2="18" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="spotlight-results" id="spotlightResults">
+                    <div class="spotlight-section">
+                        <div class="section-title">Research Modes</div>
+                        <div class="spotlight-item active" data-mode="general">
+                            <div class="item-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <circle cx="11" cy="11" r="8" />
+                                    <path d="m21 21-4.35-4.35" />
+                                </svg>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-title">AskAnything</div>
+                                <div class="item-description">Your default brain - comprehensive research</div>
+                            </div>
+                            <div class="item-badge">General</div>
+                        </div>
+                        <div class="spotlight-item" data-mode="newsmap">
+                            <div class="item-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                    <circle cx="12" cy="10" r="3" />
+                                </svg>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-title">NewsMap</div>
+                                <div class="item-description">Real-world news radar with geographic intelligence</div>
+                            </div>
+                            <div class="item-badge">News</div>
+                        </div>
+                        <div class="spotlight-item" data-mode="scholar">
+                            <div class="item-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                                    <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                                </svg>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-title">ScholarGPT</div>
+                                <div class="item-description">Lazy student's PhD mode - academic research</div>
+                            </div>
+                            <div class="item-badge">Academic</div>
+                        </div>
+                        <div class="spotlight-item" data-mode="launchlens">
+                            <div class="item-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                                    <path d="M2 17l10 5 10-5" />
+                                </svg>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-title">LaunchLens</div>
+                                <div class="item-description">Startup world spyglass - funding & VC intelligence</div>
+                            </div>
+                            <div class="item-badge">Startup</div>
+                        </div>
+                        <div class="spotlight-item" data-mode="viralforge">
+                            <div class="item-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polygon points="23 7 16 12 23 17 23 7" />
+                                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+                                </svg>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-title">ViralForge</div>
+                                <div class="item-description">The viral content engine - creator tools</div>
+                            </div>
+                            <div class="item-badge">Creator</div>
+                        </div>
+                        <div class="spotlight-item" data-mode="legalai">
+                            <div class="item-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M9 12l2 2 4-4" />
+                                    <path
+                                        d="M21 12c.552 0 1-.448 1-1V8a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v3c0 .552.448 1 1 1h18z" />
+                                </svg>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-title">LegalAI</div>
+                                <div class="item-description">Contracts simplified - legal analysis</div>
+                            </div>
+                            <div class="item-badge">Legal</div>
+                        </div>
+                    </div>
+                    <div class="spotlight-footer">
+                        <div class="footer-hint">
+                            <kbd>↑</kbd><kbd>↓</kbd> to navigate • <kbd>Enter</kbd> to select • <kbd>Esc</kbd> to close
+                            • <kbd>Ctrl+/</kbd> to open
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <main class="main" id="mainContent">
+            <div class="hero-section" id="heroSection">
+                <div class="powered-by">
+                    <span class="powered-badge">Powered by AskMeFr</span>
+                </div>
+
+                <div class="hero-content">
+                    <h1 class="hero-title">Your AI Powered Content Research Assistant</h1>
+                    <p class="hero-subtitle">Do research for content in seconds, so you can spend more time going viral.
+                    </p>
+                </div>
+
+                <div class="search-container">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Ask a question..." class="search-input">
+                        <button class="search-btn" id="searchBtn">Send</button>
+                    </div>
+                    <div class="suggestions">
+                        <button class="suggestion-chip">Podcast Outline</button>
+                        <button class="suggestion-chip">YouTube Video Research</button>
+                        <button class="suggestion-chip">Short Form Hook Ideas</button>
+                        <button class="suggestion-chip">Newsletter Draft</button>
+                    </div>
+                </div>
+
+                <div class="specialized-sections">
+                    <div class="sections-header">
+                        <h2>Specialized AI Research Assistants</h2>
+                        <p>Choose your domain for tailored insights and latest updates</p>
+                    </div>
+
+                    <div class="sections-grid">
+                        <div class="section-card" data-section="newsmap" data-mode="newsmap">
+                            <div class="section-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                    <circle cx="12" cy="10" r="3" />
+                                </svg>
+                            </div>
+                            <div class="section-info">
+                                <h3>NewsMap</h3>
+                                <p class="section-audience">Journalists / Travelers</p>
+                                <p class="section-description">Real-world news radar</p>
+                            </div>
+                            <div class="section-preview">
+                                <div class="news-item">Latest satellite imagery reveals...</div>
+                                <div class="news-item">Climate change impacts on...</div>
+                            </div>
+                        </div>
+
+                        <div class="section-card" data-section="academic" data-mode="scholar">
+                            <div class="section-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                                    <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                                </svg>
+                            </div>
+                            <div class="section-info">
+                                <h3>ScholarGPT</h3>
+                                <p class="section-audience">Students / Researchers</p>
+                                <p class="section-description">Lazy student's PhD mode</p>
+                            </div>
+                            <div class="section-preview">
+                                <div class="news-item">New breakthrough in quantum...</div>
+                                <div class="news-item">Research methodology trends...</div>
+                            </div>
+                        </div>
+
+                        <div class="section-card" data-section="startup" data-mode="launchlens">
+                            <div class="section-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                                    <path d="M2 17l10 5 10-5" />
+                                    <path d="M2 12l10 5 10-5" />
+                                </svg>
+                            </div>
+                            <div class="section-info">
+                                <h3>LaunchLens</h3>
+                                <p class="section-audience">Founders / VCs</p>
+                                <p class="section-description">Startup world spyglass</p>
+                            </div>
+                            <div class="section-preview">
+                                <div class="news-item">Series A funding rounds...</div>
+                                <div class="news-item">Emerging market trends...</div>
+                            </div>
+                        </div>
+
+                        <div class="section-card" data-section="creator" data-mode="viralforge">
+                            <div class="section-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polygon points="23 7 16 12 23 17 23 7" />
+                                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+                                </svg>
+                            </div>
+                            <div class="section-info">
+                                <h3>ViralForge</h3>
+                                <p class="section-audience">Creators / Influencers</p>
+                                <p class="section-description">The viral content engine</p>
+                            </div>
+                            <div class="section-preview">
+                                <div class="news-item">TikTok algorithm updates...</div>
+                                <div class="news-item">Viral content strategies...</div>
+                            </div>
+                        </div>
+
+                        <div class="section-card" data-section="legal" data-mode="legalai">
+                            <div class="section-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M9 12l2 2 4-4" />
+                                    <path
+                                        d="M21 12c.552 0 1-.448 1-1V8a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v3c0 .552.448 1 1 1h18z" />
+                                    <path d="M3 12v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                                </svg>
+                            </div>
+                            <div class="section-info">
+                                <h3>LegalAI</h3>
+                                <p class="section-audience">Legal teams / Freelancers</p>
+                                <p class="section-description">Contracts simplified</p>
+                            </div>
+                            <div class="section-preview">
+                                <div class="news-item">New privacy regulations...</div>
+                                <div class="news-item">Contract law updates...</div>
+                            </div>
+                        </div>
+
+                        <div class="section-card" data-section="dev" data-mode="general">
+                            <div class="section-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polyline points="16,18 22,12 16,6" />
+                                    <polyline points="8,6 2,12 8,18" />
+                                </svg>
+                            </div>
+                            <div class="section-info">
+                                <h3>AskAnything</h3>
+                                <p class="section-audience">Everyone</p>
+                                <p class="section-description">Your default brain</p>
+                            </div>
+                            <div class="section-preview">
+                                <div class="news-item">General knowledge queries...</div>
+                                <div class="news-item">Multi-domain research...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-container" id="resultsContainer" style="display: none;">
+                <div class="results-header">
+                    <button class="back-btn" id="backBtn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M19 12H5M12 19l-7-7 7-7" />
+                        </svg>
+                        New Search
+                    </button>
+                </div>
+
+                <!-- Regular Search Results -->
+                <div class="search-results" id="searchResults">
+                    <div class="answer-section">
+                        <div class="answer-content" id="answerContent">
+                            <!-- Answer will be populated here -->
+                        </div>
+                    </div>
+
+                    <div class="sources-section" id="sourcesSection">
+                        <h3>Sources</h3>
+                        <div class="sources-list" id="sourcesList">
+                            <!-- Sources will be populated here -->
+                        </div>
+                    </div>
+
+                    <div class="follow-up-section">
+                        <h3>Related Questions</h3>
+                        <div class="follow-up-questions" id="followUpQuestions">
+                            <!-- Follow-up questions will be populated here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- News Feed View -->
+                <div class="news-feed" id="newsFeed" style="display: none;">
+                    <div class="news-feed-header">
+                        <div class="feed-title" id="feedTitle">
+                            <div class="feed-icon" id="feedIcon"></div>
+                            <div class="feed-info">
+                                <h1 id="feedName">Loading...</h1>
+                                <p id="feedDescription">Fetching latest updates...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="news-grid" id="newsGrid">
+                        <!-- News articles will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

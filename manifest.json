@@ -1,0 +1,81 @@
+{
+  "name": "AskMeFr - AI Research Assistant",
+  "short_name": "AskMeFr",
+  "description": "AI-powered research assistant with specialized modes for different domains",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fafafa",
+  "theme_color": "#1a1a1a",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["productivity", "education", "utilities"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 10c-22.1 0-40 17.9-40 40 0 8.8 2.8 16.9 7.6 23.5l-2.1 8.4c-0.3 1.2 0.6 2.3 1.8 2.3h4.2c1.2 0 2.3-0.9 2.6-2.1l1.4-5.6C30.2 80.8 39.6 85 50 85s19.8-4.2 24.5-8.5l1.4 5.6c0.3 1.2 1.4 2.1 2.6 2.1h4.2c1.2 0 2.1-1.1 1.8-2.3l-2.1-8.4C86.2 66.9 90 58.8 90 50c0-22.1-17.9-40-40-40z' fill='%231a1a1a'/%3E%3Ccircle cx='38' cy='42' r='3' fill='%23fff'/%3E%3Ccircle cx='62' cy='42' r='3' fill='%23fff'/%3E%3Cpath d='M35 55c0-8.3 6.7-15 15-15s15 6.7 15 15' stroke='%23fff' stroke-width='2' fill='none'/%3E%3Cpath d='M25 30c2-4 6-8 12-10M75 30c-2-4-6-8-12-10M30 25c3-2 7-3 11-3M70 25c-3-2-7-3-11-3' stroke='%231a1a1a' stroke-width='1.5' fill='none' opacity='0.6'/%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 10c-22.1 0-40 17.9-40 40 0 8.8 2.8 16.9 7.6 23.5l-2.1 8.4c-0.3 1.2 0.6 2.3 1.8 2.3h4.2c1.2 0 2.3-0.9 2.6-2.1l1.4-5.6C30.2 80.8 39.6 85 50 85s19.8-4.2 24.5-8.5l1.4 5.6c0.3 1.2 1.4 2.1 2.6 2.1h4.2c1.2 0 2.1-1.1 1.8-2.3l-2.1-8.4C86.2 66.9 90 58.8 90 50c0-22.1-17.9-40-40-40z' fill='%231a1a1a'/%3E%3Ccircle cx='38' cy='42' r='3' fill='%23fff'/%3E%3Ccircle cx='62' cy='42' r='3' fill='%23fff'/%3E%3Cpath d='M35 55c0-8.3 6.7-15 15-15s15 6.7 15 15' stroke='%23fff' stroke-width='2' fill='none'/%3E%3Cpath d='M25 30c2-4 6-8 12-10M75 30c-2-4-6-8-12-10M30 25c3-2 7-3 11-3M70 25c-3-2-7-3-11-3' stroke='%231a1a1a' stroke-width='1.5' fill='none' opacity='0.6'/%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "NewsMap",
+      "short_name": "NewsMap",
+      "description": "Geographic intelligence and news radar",
+      "url": "/?mode=newsmap",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233498db' stroke-width='2'%3E%3Cpath d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "ScholarGPT",
+      "short_name": "Scholar",
+      "description": "Academic research assistant",
+      "url": "/?mode=scholar",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239b59b6' stroke-width='2'%3E%3Cpath d='M22 10v6M2 10l10-5 10 5-10 5z'/%3E%3Cpath d='M6 12v5c3 3 9 3 12 0v-5'/%3E%3C/svg%3E",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "LaunchLens",
+      "short_name": "Startup",
+      "description": "Startup ecosystem intelligence",
+      "url": "/?mode=launchlens",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e74c3c' stroke-width='2'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5z'/%3E%3Cpath d='M2 17l10 5 10-5'/%3E%3C/svg%3E",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "ViralForge",
+      "short_name": "Creator",
+      "description": "Viral content engine",
+      "url": "/?mode=viralforge",
+      "icons": [
+        {
+          "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f39c12' stroke-width='2'%3E%3Cpolygon points='23 7 16 12 23 17 23 7'/%3E%3Crect x='1' y='5' width='15' height='14' rx='2' ry='2'/%3E%3C/svg%3E",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ]
+}
